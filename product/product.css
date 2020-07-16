@@ -1,0 +1,205 @@
+@import url("https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Roboto&display=swap");
+
+:root {
+    --background-color: #3d1011;
+    --font-color: hsl(24, 47%, 55%);
+    --background-color-alpha: rgba(61, 16, 17, 0.89);
+    background-color: var(--background-color-alpha);
+}
+
+#header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    background-color: black;
+    z-index: 1;
+}
+
+#nav-bar {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#header-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+#name-img {
+    height: 64px;
+    background-color: ;
+}
+
+#nav-list {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--font-color);
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.5rem;
+    flex-grow: 1;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    color: var(--font-color);
+    margin-top: 96px;
+}
+
+.title {
+    font-family: "Julius Sans One", sans-serif;
+    text-align: center;
+    background-color: var(--background-color);
+    border-radius: 0.35rem;
+    padding: 0.75rem;
+    margin: 0.25rem;
+}
+
+#benefits {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+#benefits-title {
+    flex: 1 0 90%;
+}
+
+#tier1,
+#tier2,
+#tier3 {
+    flex: 1 1 33%;
+}
+
+.emotes {
+    text-align: center;
+}
+
+.emotes img {
+    width: 28px;
+}
+
+.price {
+    text-align: center;
+    font-size: 2rem;
+}
+
+#purchase-form {
+    text-align: center;
+    flex: 1 0 90%;
+}
+
+#about {
+    display: grid;
+    grid-template-rows: 0.1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "title"
+    "about"
+    "schedule"
+    "video";
+}
+
+/* https://www.caktusgroup.com/blog/2017/10/23/css-tip-fixed-headers-and-section-anchors/ */
+.anchor a {
+    position: absolute;
+    left: 0px;
+    top: -96px;
+}
+
+.anchor {
+    position: relative;
+}
+
+@media screen and (min-width: 640px) {
+    #about {
+        grid-template-rows: 0.1fr 0.5fr 1fr 1fr;
+        grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
+        grid-template-areas:
+      "title title title title"
+      ". about schedule ."
+      ". video video ."
+      ". video video .";
+    }
+
+    body {
+        margin-top: 76px;
+    }
+
+    .emotes img {
+        width: 56px;
+    }
+
+    .anchor a {
+        position: absolute;
+        left: 0px;
+        top: -76px;
+    }
+}
+
+#about-title {
+    grid-area: title;
+}
+
+#bio {
+    text-align: left;
+    grid-area: about;
+}
+
+#email-form,
+#schedule {
+    grid-area: schedule;
+}
+
+/* https://www.smashingmagazine.com/2014/02/making-embedded-content-work-in-responsive-design/ */
+#video-embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0;
+    overflow: hidden;
+    grid-area: video;
+    z-index: -1;
+}
+
+#video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+#form {
+    padding: 1rem;
+}
+
+form,
+label,
+input,
+button {
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    border-radius: 0.35rem;
+}
+
+.purchase-button {
+    font-size: 1.1rem;
+    width: 80%;
+    padding: 0.75rem;
+    margin: 0.75rem;
+    background: var(--background-color);
+    color: inherit;
+    cursor: pointer;
+}

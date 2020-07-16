@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>freeCodeCamp Survey Project</title>
+    <link rel="stylesheet" type="text/css" href="survey.css">
+</head>
+<body>
+<!--
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+-->
+
+<div class="container">
+    <header>
+        <h1 id="title">Video Game Survey</h1>
+        <p id="description">What video game platform and genres do you like the most?</p>
+    </header>
+
+    <!-- Survey form -->
+    <div class="form-container">
+        <form id="survey-form">
+            <div class="input-grouping">
+                <label id="name-label" for="name">Name</label>
+                <input id="name" type="text" placeholder="Enter your name" required>
+            </div>
+            <div class="input-grouping">
+                <label id="email-label" for="email">Email</label>
+                <input id="email" type="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-grouping">
+                <label id="number-label" for="age">Age</label>
+                <input id="age" type="number" min="13" max="120" placeholder="Enter your age">
+            </div>
+            <div class="input-grouping">
+                <p>Do you own a console?</p>
+                <label>
+                    <input name="console" type="radio" value="yes" checked>Yes
+                </label>
+                <label>
+                    <input name="console" type="radio" value="no">No
+                </label>
+            </div>
+            <div class="input-grouping">
+                <label for="dropdown">What is your preferred gaming platform?</label>
+                <select id="dropdown" name="platform">
+                    <option value="none" disabled selected>Please select one</option>
+                    <option value="pc">PC</option>
+                    <option value="mac">Mac</option>
+                    <option value="playstation">Playstation</option>
+                    <option value="xbox">XBox</option>
+                    <option value="nintendo">Nintendo</option>
+                    <option value="mobile">Mobile</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="input-grouping">
+                <p>Which video game genres do you like the most?</p>
+                <label><input type="checkbox" value="action">Action</label>
+                <label><input type="checkbox" value="adventure">Adventure</label>
+                <label><input type="checkbox" value="battle-royale">Battle Royale</label>
+                <label><input type="checkbox" value="fighting">Fighting</label>
+                <label><input type="checkbox" value="open-world">Open World</label>
+                <label><input type="checkbox" value="platform">Platformer</label>
+                <label><input type="checkbox" value="puzzle">Puzzle</label>
+                <label><input type="checkbox" value="roguelike">Roguelike</label>
+                <label><input type="checkbox" value="rpg">RPG</label>
+                <label><input type="checkbox" value="shooter">Shooter</label>
+                <label><input type="checkbox" value="simulation">Simulation</label>
+                <label><input type="checkbox" value="sports">Sports</label>
+                <label><input type="checkbox" value="strategy">Strategy</label>
+                <label><input type="checkbox" value="other">Other (specify below)</label>
+            </div>
+            <div class="input-grouping">
+                <label for="comments">Additional Comments?</label>
+                <textarea id="comments" name="comments" rows="5" placeholder="Enter your comments here ..."></textarea>
+            </div>
+            <div class="input-grouping">
+                <p>Thank you for filling out this survey!</p>
+                <button id="submit" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

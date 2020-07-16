@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>freeCodeCamp Technical Documentation Project</title>
+    <link rel="stylesheet" type="text/css" href="technical.css">
+</head>
+<body>
+<!--
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+-->
+
+<nav id="navbar">
+    <header>OBS Build Guide</header>
+    <a href="javascript:void(0);" id="menu-icon" onclick="navButton()">&#9776;</a>
+    <hr>
+    <div id="nav-list" class="nav-list">
+        <a class="nav-link" href="#Introduction">Introduction</a>
+        <a class="nav-link" href="#Windows">Windows</a>
+        <a class="nav-link" href="#macOS">MacOS</a>
+        <a class="nav-link" href="#Linux">Linux</a>
+        <a class="nav-link" href="#FreeBSD">FreeBSD</a>
+    </div>
+</nav>
+
+<main id="main-doc">
+    <section class="main-section" id="Introduction">
+        <header>Introduction</header>
+        <hr>
+        <p>
+            This unoffical guide is taken from the OBS Project <a
+                href="https://obsproject.com/wiki/Install-Instructions">Install Instructions Guide</a> and is under the
+            following copyright statement: <strong>&copy; 2012-2020. OBS and OBS Studio are created and maintained by
+            Jim</strong>
+        </p>
+        <hr>
+        <p>If you want to develop for OBS, please visit our <a href="https://obsproject.com/discord">Discord</a> and get
+            to know the devs or have questions answered!</p>
+        <p>Also, if there is something in this guide you want to change/improve on, it is recommended that you talk
+            about it with the devs in Discord or IRC first.</p>
+        <p>Please note that any install directions/packages for Linux/FreeBSD distributions listed as Unofficial means
+            that they are community provided, and any support for those packages should be directed at the appropriate
+            distro/package maintainers.</p>
+    </section>
+    <section class="main-section" id="Windows">
+        <header>Windows</header>
+        <section class="sub-section>">
+            <header>Build Requirements</header>
+            <ul>
+                <li>Development packages of FFmpeg, x264, cURL, and mbedTLS</li>
+                <li>Pre-built windows dependencies for VS2017 found here: <a
+                        href="https://obsproject.com/downloads/dependencies2017.zip">
+                    https://obsproject.com/downloads/dependencies2017.zip</a></li>
+                <li><a href="http://www.qt.io/">Qt5</a> (Grab the MSVC package for your version of Visual Studio)</li>
+                <li>We currently deploy with 5.10.1, which is no longer available from Qt. A download is provided <a
+                        href="https://cdn-fastly.obsproject.com/downloads/Qt_5.10.1.7z">here</a></li>
+                <li>Windows version of <a href="http://www.cmake.org/">cmake</a></li>
+                <li><a href="https://visualstudio.microsoft.com/vs/older-downloads/">Visual Studio 2017</a> (latest
+                    updates recommended)
+                </li>
+                <li>Windows 10 SDK (minimum version of 10.0.18362.0)</li>
+            </ul>
+        </section>
+        <section class="sub-section">
+            <header>Build Procedure</header>
+            <ol>
+                <li>Clone the repository and submodules:
+                    <code>git clone --recursive https://github.com/obsproject/obs-studio.git</code>
+                    <p>If you do not know what submodules are, or you are not using git from the command line, <strong>PLEASE
+                        make sure to fetch the submodules too.</strong></p>
+                </li>
+                <li>
+                    <p>Create the following subdirectories (suffixed with or without 32/64 to specify architecture)
+                        within the cloned repository for building:</p>
+                    <ul class="code-list">
+                        <li>release</li>
+                        <li>debug</li>
+                        <li>build</li>
+                    </ul>
+                    <p>They are excluded from the repo in .gitignore for the sake of building, so they are safe to
+                        create and use within the repository base directory.</p>
+                </li>
+                <li>
+                    <p>Run cmake-gui, and set the following fields:</p>
+                    <ul>
+                        <li>In "where is the source code", enter in the repo directory (example: <code>D:/obs</code>).
+                        </li>
+                        <li>In "where to build the binaries", enter the repo directory path with the 'build'
+                            subdirectory (example: <code>D:/obs/build</code>).
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Set the following variables in cmake-gui (alternatively, you can set them as Windows Environment
+                        Variables):</p>
+                    <p>Required</p>
+                    <p><code>DepsPath</code> (Path to the include for all dependencies, not including Qt).
+                        An example path if you extracted the dependancies .zip to <code>c:\obs-deps</code> would be:</p>
+                    <ul class="code-list">
+                        <li>c:\obs-deps\win32</li>
+                        <li>c:\obs-deps\win64</li>
+                    </ul>
+                    <p><code>QTDIR</code> (Path to Qt build base directory)</p>
+                    <p>GUI is built by default. Set the cmake boolean variable DISABLE_UI to TRUE if you don't want the
+                        GUI and this is no longer required. Can be optionally suffixed with 32 or 64 to specify target
+                        arch).</p>
+                    <p>NOTE: Make sure to download Qt 5.X.X prebuilt components for your version of MSVC (64 or 32
+                        bit).</p>
+                    <p>Example Qt directories you would use here if you installed Qt5 to <code>D:\Qt</code> would
+                        usually look something like this:
+                    <ul class="code-list">
+                        <li>(32bit) QTDIR=D:\Qt\5.10.1\msvc2017</li>
+                        <li>(64bit) QTDIR64=D:\Qt\5.10.1\msvc2017_64</li>
+                    </ul>
+                    </p>
+                    <p>Optional</p>
+                    <p>(If these share the same directory as DepsPath, they do not need to be individually
+                        specified.)</p>
+                    <table>
+                        <tr>
+                            <td class="code-list">FFmpegPath</td>
+                            <td>(Path to just FFmpeg include directory)</td>
+                        </tr>
+                        <tr>
+                            <td class="code-list">x264Path</td>
+                            <td>(Path to just x264 include directory)</td>
+                        </tr>
+                        <tr>
+                            <td class="code-list">curlPath</td>
+                            <td>(Path to just cURL include directory)</td>
+                        </tr>
+                    </table>
+                </li>
+                <li>
+                    <p>In cmake-gui, press 'Configure' and select the generator that fits to your installed VS
+                        Version:</p>
+                    <p>Visual Studio 15 2017, or their 64bit equivalents if you want to build the 64bit version of
+                        OBS</p>
+                    <p>NOTE: If you need to change your dependencies from a build already configured, you will need to
+                        uncheck COPIED_DEPENDENCIES and run Configure again.
+                        If you did not set up Environment Variables earlier you can now configure the DepsPath and if
+                        necessary the x264, ffmpeg and curl path in the cmake-gui.</p>
+                </li>
+                <li>
+                    <p>In cmake-gui, press 'Generate' to generate Visual Studio project files in the 'build'
+                        subdirectory.</p>
+                    <p>Open <code>obs-studio.sln</code> from the subdirectory you specified under "where to build the
+                        binaries" (e.g. <code>D:/obs/build</code>) in Visual Studio (or click the Open Project button
+                        from the cmake-gui in 3.7+).</p>
+                </li>
+                <li>
+                    <p>The project should now be ready to build and run. All required dependencies should be copied on
+                        compile and it should be a fully functional build environment. The output is built in the
+                        'rundir/[build type]' directory of your 'build' subdirectory.</p>
+                </li>
+            </ol>
+        </section>
+    </section>
+    <section class="main-section" id="macOS">
+        <header>macOS</header>
+        <ol>
+            <li>Clone the repository and submodules:
+                <code>git clone --recursive https://github.com/obsproject/obs-studio.git</code>
+                <p>If you do not know what submodules are, or you are not using git from the command line, <strong>PLEASE
+                    make sure to fetch the submodules too.</strong></p>
+            </li>
+            <li>
+                <p>Use macports or homebrew and install FFmpeg, x264, Qt5, cmake, mbedtls and swig (if you want
+                    scripting).</p>
+                <p>NOTE: Qt5 can also be downloaded/installed via the Qt website, though keep in mind that you will have
+                    to set the QTDIR environment variable to the Qt5 build base directory.
+                    For example: export QTDIR=/usr/local/opt/qt</p>
+                <p>NOTE: If you need SRT support, you might need to install FFmpeg from a custom tap instead of the
+                    default homebrew FFmpeg, like so:</p>
+                <ul class="code-list">
+                    <li>brew tap homebrew-ffmpeg/ffmpeg</li>
+                    <li>brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-srt</li>
+                </ul>
+            </li>
+            <li>
+                <p>Make sure to have the OSX 10.9 or newer SDK installed (comes with recent versions of Xcode)</p>
+            </li>
+            <li>
+                <p>n a terminal, go to the obs-studio directory create a 'build' sub directory and change to it, then to
+                    build, type:</p>
+                <p>on OSX 10.9 or newer:</p>
+                <code>cmake .. && make</code>
+                <p>on OSX 10.8:</p>
+                <code>MACOSX_DEPLOYMENT_TARGET=10.8 cmake
+                    -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/
+                    .. && make</code>
+            </li>
+            <li>
+                <p>It builds in a modular structure by default. To run it via terminal, go to
+                    build/rundir/RelWithDebInfo/bin, then run using command <code>./obs</code></p>
+                <p>NOTE: If you are running via command prompt, you must be in the 'bin' directory specified above,
+                    otherwise it will not be able to find its files relative to the binary.</p>
+                <p>Currently app bundles are created on CI with the before deploy script, may require tweaking to work
+                    locally. <a href="https://github.com/obsproject/obs-studio/blob/master/CI/before-deploy-osx.sh#L20">https://github.com/obsproject/obs-studio/blob/master/CI/before-deploy-osx.sh#L20</a>
+                </p>
+                <p>We are currently working to improve this process</p>
+            </li>
+        </ol>
+
+    </section>
+    <section class="main-section" id="Linux">
+        <header>Linux</header>
+        <section class="sub-section">
+            <header>Red Hat/Fedora-based Build Directions</header>
+            <ol>
+                <li>
+                    <p>Get RPM fusion at <a href="http://rpmfusion.org/Configuration/">http://rpmfusion.org/Configuration/</a>
+                        (<a href="http://li.nux.ro/repos.html">Nux Desktop</a> is an alternative that may include better
+                        packages for RHEL/CentOS 7)</p>
+                </li>
+                <li>
+                    <p>Get the required packages:</p>
+                    <pre>
+            <code>
+sudo yum install \
+       make \
+       gcc \
+       gcc-c++ \
+       gcc-objc \
+       cmake \
+       git \
+       libX11-devel \
+       mesa-libGL-devel \
+       libv4l-devel \
+       pulseaudio-libs-devel \
+       libspeexdsp-devel \
+       x264-devel \
+       freetype-devel \
+       fontconfig-devel \
+       libXcomposite-devel \
+       libXinerama-devel \
+       qt5-qtbase-devel \
+       qt5-qtx11extras-devel \
+       qt5-qtsvg-devel \
+       libcurl-devel \
+       systemd-devel \
+       ffmpeg \
+       ffmpeg-devel \
+       luajit-devel \
+       python3-devel \
+       mbedtls \
+       mbedtls-devel \
+       swig
+          </code>
+        </pre>
+                    <p>If libspeexdsp-devel is not available, it can be built from source (<a
+                            href="https://git.xiph.org/?p=speexdsp.git;a=summary">https://git.xiph.org/?p=speexdsp.git;a=summary</a>)
+                    </p>
+                </li>
+                <li>
+                    <p>Building and installing OBS</p>
+                    <ul>
+                        <li>If building with browser source:</li>
+                        <pre>
+              <code>
+wget https://cdn-fastly.obsproject.com/downloads/cef_binary_3770_linux64.tar.bz2
+tar -xjf ./cef_binary_3770_linux64.tar.bz2
+git clone --recursive https://github.com/obsproject/obs-studio.git
+cd obs-studio
+mkdir build && cd build
+cmake -DUNIX_STRUCTURE=1 -DBUILD_BROWSER=ON -DCEF_ROOT_DIR="../../cef_binary_3770_linux64" ..
+make -j4
+sudo make install
+              </code>
+            </pre>
+                        <li>If building without browser source</li>
+                        <pre>
+              <code>
+git clone --recursive https://github.com/obsproject/obs-studio.git
+cd obs-studio
+mkdir build && cd build
+cmake -DUNIX_STRUCTURE=1 ..
+make -j4
+sudo make install
+              </code>
+            </pre>
+                    </ul>
+                </li>
+                <li>
+                    <p>By default obs installs libraries in /usr/local/lib. To make sure that the loader can find them
+                        there, create a file /etc/ld.so.conf.d/local.conf with the single line</p>
+                    <code>/usr/local/lib</code>
+                    <p>and then run</p>
+                    <code>sudo ldconfig</code>
+                </li>
+            </ol>
+        </section>
+        <section class="sub-section">
+            <header>Debian-based Build Directions</header>
+            <ol>
+                <li>
+                    <p>Get the required packages</p>
+                    <pre>
+            <code>
+sudo apt-get install \
+           build-essential \
+           checkinstall \
+           cmake \
+           git \
+           libmbedtls-dev \
+           libasound2-dev \
+           libavcodec-dev \
+           libavdevice-dev \
+           libavfilter-dev \
+           libavformat-dev \
+           libavutil-dev \
+           libcurl4-openssl-dev \
+           libfdk-aac-dev \
+           libfontconfig-dev \
+           libfreetype6-dev \
+           libgl1-mesa-dev \
+           libjack-jackd2-dev \
+           libjansson-dev \
+           libluajit-5.1-dev \
+           libpulse-dev \
+           libqt5x11extras5-dev \
+           libspeexdsp-dev \
+           libswresample-dev \
+           libswscale-dev \
+           libudev-dev \
+           libv4l-dev \
+           libvlc-dev \
+           libx11-dev \
+           libx264-dev \
+           libxcb-shm0-dev \
+           libxcb-xinerama0-dev \
+           libxcomposite-dev \
+           libxinerama-dev \
+           pkg-config \
+           python3-dev \
+           qtbase5-dev \
+           libqt5svg5-dev \
+           swig \
+           libxcb-randr0-dev \
+           libxcb-xfixes0-dev \
+           libx11-xcb-dev \
+           libxcb1-dev
+            </code>
+          </pre>
+                </li>
+                <li>
+                    <p>Building and installing OBS</p>
+                    <ul>
+                        <li>If building with browser source</li>
+                        <pre>
+              <code>
+wget https://cdn-fastly.obsproject.com/downloads/cef_binary_3770_linux64.tar.bz2
+tar -xjf ./cef_binary_3770_linux64.tar.bz2
+git clone --recursive https://github.com/obsproject/obs-studio.git
+cd obs-studio
+mkdir build && cd build
+cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_BROWSER=ON -DCEF_ROOT_DIR="../../cef_binary_3770_linux64" ..
+make -j4
+sudo checkinstall --default --pkgname=obs-studio --fstrans=no --backup=no --pkgversion="$(date +%Y%m%d)-git" --deldoc=yes
+              </code>
+            </pre>
+                        <li>If building without browser source</li>
+                        <pre>
+              <code>
+git clone --recursive https://github.com/obsproject/obs-studio.git
+cd obs-studio
+mkdir build && cd build
+cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX=/usr ..
+make -j4
+sudo checkinstall --default --pkgname=obs-studio --fstrans=no --backup=no --pkgversion="$(date +%Y%m%d)-git" --deldoc=yes
+              </code>
+            </pre>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+        <section class="sub-section">
+            <header>openSUSE Build Directions</header>
+            <ol>
+                <li>
+                    <p>Add Packman repository</p>
+                    <p>The Packman repository contains the obs-studio package since it requires the fuller version of
+                        FFmpeg which is in Packman for legal reasons. If you do not already have the Packman repository
+                        add it as shown below.</p>
+                    <ul>
+                        <li>For openSUSE Tumbleweed:</li>
+                        <code>sudo zypper ar --refresh --priority 90 http://packman.inode.at/suse/openSUSE_Tumbleweed
+                            packman</code>
+                        <li>For openSUSE Leap 15.0:</li>
+                        <code>sudo zypper ar --refresh --priority 90 http://packman.inode.at/suse/openSUSE_Leap_15.0
+                            packman</code>
+                        <li>For openSUSE Leap 42.3:</li>
+                        <code>sudo zypper ar --refresh http://packman.inode.at/suse/openSUSE_Leap_42.3 packman</code>
+                    </ul>
+                    <p>It is recommended to set the priority for Packman lower so it takes precedence over base
+                        repositories (skip on Tumbleweed as included in initial command).</p>
+                    <code>sudo zypper mr --priority 90 packman</code>
+                    <p>The Packman version of FFmpeg should be used for full codec support. To ensure any existing
+                        FFmpeg packages are switched to Packman versions execute the following before installing
+                        obs-studio.</p>
+                    <code>sudo zypper dup --repo packman</code>
+                </li>
+                <li>
+                    <p>Install build dependencies</p>
+                    <pre>
+            <code>
+sudo zypper in cmake \
+             fontconfig-devel \
+             freetype2-devel \
+             gcc \
+             gcc-c++ \
+             libcurl-devel \
+             ffmpeg2-devel \
+             libjansson-devel \
+             libpulse-devel \
+             libspeexdsp-devel \
+             libqt5-qtbase-devel \
+             libqt5-qtx11extras-devel \
+             libudev-devel \
+             libv4l-devel \
+             libXcomposite-devel \
+             libXinerama-devel \
+             libXrandr-devel \
+             luajit-devel \
+             mbedtls \
+             swig \
+             python3-devel
+            </code>
+          </pre>
+                </li>
+                <li>
+                    <p>Building and installing OBS</p>
+                    <ul>
+                        <li>If building with browser source</li>
+                        <pre>
+              <code>
+wget https://cdn-fastly.obsproject.com/downloads/cef_binary_3770_linux64.tar.bz2
+tar -xjf ./cef_binary_3770_linux64.tar.bz2
+git clone --recursive https://github.com/obsproject/obs-studio.git
+cd obs-studio
+mkdir build && cd build
+cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_BROWSER=ON -DCEF_ROOT_DIR="../../cef_binary_3770_linux64" ..
+make -j4
+sudo make install
+              </code>
+            </pre>
+                        <li>If building without browser source</li>
+                        <pre>
+              <code>
+git clone --recursive https://github.com/obsproject/obs-studio.git
+cd obs-studio
+mkdir build && cd build
+cmake -DUNIX_STRUCTURE=1 -DCMAKE_INSTALL_PREFIX=/usr ..
+make -j4
+sudo make install
+              </code>
+            </pre>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </section>
+    <section class="main-section" id="FreeBSD">
+        <header>FreeBSD</header>
+        <p>The easiest way to build OBS Studio from source is to use the <a
+                href="https://www.freebsd.org/doc/handbook/ports-using.html">FreeBSD Ports</a> and modify the
+            multimedia/obs-studio port to suit your needs.</p>
+        <p>First you have to set up the ports infrastructure on your system. See the related chapter in the <a
+                href="https://www.freebsd.org/doc/handbook/ports-using.html">FreeBSD Handbook</a>.</p>
+        <p>Once you've got your ports tree at /usr/ports you may edit the multimedia/obs-studio port to your liking.
+            Then, you may build and install the port with:</p>
+        <pre>
+      <code>
+cd /usr/ports/multimedia/obs-studio
+make install clean
+      </code>
+    </pre>
+    </section>
+</main>
+<script src="technical.js"></script>
+</body>
+</html>

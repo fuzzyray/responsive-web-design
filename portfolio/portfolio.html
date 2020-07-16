@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Paul Varner - Portfolio">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" type="text/css" href="portfolio.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+    <a href="#welcome-section" onclick="closeMenu()">Home</a>
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#projects" onclick="closeMenu()">Work</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="javascript:void(0);" class="icon" onclick="myMenuButton()">&#9776;</a>
+</nav>
+
+<section id="welcome-section">
+    <h1>Hi I'm Paul aka fuzzyray</h1>
+    <p>I'm a full stack developer with an emphasis on networking and network automation</p>
+    <img src="https://raw.githubusercontent.com/fuzzyray/FreeCodeCamp/master/assets/headshot.png" alt="">
+</section>
+
+<section id="about">
+
+    <header class="section-header">
+        <h2>About Me</h2>
+    </header>
+    <article>
+        <h3>Career</h3>
+        <p>I've been fascinated with computers and programming since I played my first video games on an apple ][
+            computer and started dabbling in BASIC on a Radio Shack TRS-80 computer.</p>
+        <p>I went to college at The United States Military Academy (West Point) and received my Bachelor of Science
+            degree in Computer Science in 1989.</p>
+        <p>While in the Army, I served in Operations Desert Shield/Desert Storm but unfortunately damaged my right hip
+            and was medically discharged in 1992.</p>
+        <p>I started my career in Telecommunications at MCI in 1994, working on Network Management Systems.</p>
+        <p>I went to work for Verizon Wireless in 2001 and held several positions until I voluntarily left in 2019 so I
+            could get a hip replacement for my hip that had seriously degraded over the years since I first damaged
+            it.</p>
+        <p>Highlights of my career at Verizon Wireless</p>
+        <ul>
+            <li>Fault Management System team lead and design architect</li>
+            <li>Tier 3 Network Engineer for National Network Operations</li>
+            <li>Network infrastructure automation lead for the Verizon Cloud Platform</li>
+        </ul>
+        <p>I am currently a Technology Fellow with <a href="https://broadmoor.io" target="_blank">Broadmoor
+            Consulting</a>.</p>
+    </article>
+    <article>
+        <h3>Hobbies and Interests</h3>
+        <p>I love video games and computing. During my free time I play Minecraft, World of Warcraft, and Crusader Kings
+            2 to name a few.</p>
+        <p>I livestream on <a href="https://www.twitch.tv" target="_blank">Twitch</a> playing modded Minecraft on
+            Saturday and Sunday</p>
+        <p>I actively look for and take online training to continue to hone my skills.</p>
+    </article>
+</section>
+<section id="projects">
+    <div class="section-header">
+        <h2>My Projects</h2>
+    </div>
+    <article id="open-source">
+        <div class="section-header">
+            <h3>Open Source Development</h3>
+        </div>
+        <h4>Fractint</h4>
+        <p>
+            My introduction to Open Source software was with <a href="https://www.fractint.org">Fractint</a>. My PC had
+            an 80286 Intel Processor with 1MB of extended memory. There were two additional types of additional memory
+            at the time "expanded" and "extended". I had the extended type which had very little support for use other
+            than as a RAM disk. I wrote and submitted a patch to add extended memory support to Fractint, so that I
+            could use my additional memory with the software. The patch was accepted and is documented in the
+            dos_help/help5.src file in the <a href="https://www.fractint.org/ftp/current/">source code</a>.
+        </p>
+        <h4>Gentoo Linux</h4>
+        <p>
+            I was on the <a href="https://wiki.gentoo.org/wiki/Project:Portage-Tools">Portage Tools team</a> for <a
+                href="https://www.gentoo.org">Gentoo Linux</a> from 2005 - 2018. I primarily focused on the <a
+                href="https://gitweb.gentoo.org/proj/gentoolkit.git/" target="_blank">Gentoolkit package</a>.
+        </p>
+    </article>
+    <article id="web-development">
+        <div class="section-header">
+            <h3>Web Development</h3>
+        </div>
+        <p>I've been working through the <a href="https://www.freecodecamp.org">freeCodeCamp</a> Certification projects
+            to refresh my skills.</p>
+        <h4>Responsive Web Design</h4>
+        <div class="responsive-web-tiles">
+            <div class="project-tile">
+                <a href="https://codepen.io/fuzzyray/full/abvjMGr" target="_blank">
+                    <p>freeCodeCamp Tribute Page</p>
+                    <img src="https://raw.githubusercontent.com/fuzzyray/FreeCodeCamp/master/assets/tribute.png"
+                         alt="tribute page tile">
+                </a>
+            </div>
+            <div class="project-tile">
+                <a href="https://codepen.io/fuzzyray/full/pojOPQR" target="_blank">
+                    <p>freeCodeCamp Survey Page</p>
+                    <img src="https://raw.githubusercontent.com/fuzzyray/FreeCodeCamp/master/assets/survey.png"
+                         alt="survey page tile">
+                </a>
+            </div>
+            <div class="project-tile">
+                <a href="https://codepen.io/fuzzyray/full/ExVGJNp" target="_blank">
+                    <p>freeCodeCamp Technical Documentation Page</p>
+                    <img src="https://raw.githubusercontent.com/fuzzyray/FreeCodeCamp/master/assets/technical.png"
+                         alt="technical documentation page tile">
+                </a>
+            </div>
+            <div class="project-tile">
+                <a href="https://codepen.io/fuzzyray/full/MWaqrNY" target="_blank">
+                    <p>freeCodeCamp Product Page</p>
+                    <img src="https://raw.githubusercontent.com/fuzzyray/FreeCodeCamp/master/assets/product.png"
+                         alt="product page tile">
+                </a>
+            </div>
+        </div>
+        <div class="certificate-link">
+            <p><a href="https://www.freecodecamp.org/certification/fuzzyray/responsive-web-design" target="_blank">Responsive Web Design
+                Certificate</a></p>
+        </div>
+
+        <h4>JavaScript Algorithms and Data Structures</h4>
+        <div class="responsive-web-tiles">
+            <div class="project-tile">
+                <a href="http://varnerfamily.org/paul/javascript-algorithms/" target="_blank">
+                    <p>Project Viewer</p>
+                    <img src="https://raw.githubusercontent.com/fuzzyray/FreeCodeCamp/master/assets/project-viewer.png"
+                         alt="javascript algorithms and data structures viewer">
+                </a>
+                <p>Viewer written in React to view projects for the Javascript Algorithms and Data Structures Certificate</p>
+            </div>
+        </div>
+        <div class="certificate-link">
+            <p><a href="https://www.freecodecamp.org/certification/fuzzyray/javascript-algorithms-and-data-structures" target="_blank">JavaScript
+                Algorithms and Data Structures Certificate</a></p>
+        </div>
+
+        <h4>Front End Libraries</h4>
+        <div class="responsive-web-tiles">
+            <div class="project-tile">
+                <a href="https://codepen.io/fuzzyray/full/MWKeoRx" target="_blank">
+                    <p>freeCodeCamp Random Quote Machine</p>
+                    <img src="https://raw.githubusercontent.com/fuzzyray/FreeCodeCamp/master/assets/random-quote-machine.png"
+                         alt="random quote machine tile">
+                </a>
+                <p>Written with React, Bootstrap, and FontAwesome<br>
+                <a href="https://github.com/fuzzyray/random-quote-machine" target="_blank">Source Code</a></p>
+            </div>
+            <div class="project-tile">
+                <a href="http://varnerfamily.org/paul/frontend/markdown-previewer/" target="_blank">
+                    <p>freeCodeCamp Markdown Previewer</p>
+                    <img src="https://raw.githubusercontent.com/fuzzyray/FreeCodeCamp/master/assets/markdown-previewer.png"
+                         alt="markdown previewer tile">
+                </a>
+                <p>Written with React and Marked.js<br>
+                <a href="https://github.com/fuzzyray/markdown-previewer" target="_blank">Source Code</a></p>
+            </div>
+            <div class="project-tile">
+                <a href="http://varnerfamily.org/paul/frontend/drum-machine/" target="_blank">
+                    <p>freeCodeCamp Drum Machine</p>
+                    <img src="https://raw.githubusercontent.com/fuzzyray/FreeCodeCamp/master/assets/drum-machine.png"
+                         alt="drum machine tile">
+                </a>
+                <p>Written with jQuery and Materialize<br>
+                <a href="https://github.com/fuzzyray/drum-machine" target="_blank">Source Code</a></p>
+            </div>
+            <div class="project-tile">
+                <a href="http://varnerfamily.org/paul/frontend/calculator/" target="_blank">
+                    <p>freeCodeCamp Javascript Calculator</p>
+                    <img src="https://raw.githubusercontent.com/fuzzyray/FreeCodeCamp/master/assets/calculator.png"
+                         alt="calculator tile">
+                </a>
+                <p>Written with React and Pure CSS Buttons<br>
+                <a href="https://github.com/fuzzyray/calculator" target="_blank">Source Code</a></p>
+            </div>
+            <div class="project-tile">
+                <a href="http://varnerfamily.org/paul/frontend/pomodoro-clock/" target="_blank">
+                    <p>freeCodeCamp Pomodoro Clock</p>
+                    <img src="https://raw.githubusercontent.com/fuzzyray/FreeCodeCamp/master/assets/pomodoro-clock.png"
+                         alt="pomodoro clock tile">
+                </a>
+                <p>Written with React and Pure CSS Buttons<br>
+                <a href="https://github.com/fuzzyray/pomodoro-clock" target="_blank">Source Code</a></p>
+            </div>
+        </div>
+        <div class="certificate-link">
+            <p><a href="https://www.freecodecamp.org/certification/fuzzyray/front-end-libraries" target="_blank">Front End Libraries Certificate</a></p>
+        </div>
+    </article>
+</section>
+<section id="contact">
+    <div class="section-header">
+        <h2>Contact me</h2>
+    </div>
+    <a class="profile-link" href="https://github.com/fuzzyray" target="_blank">Github</a>
+    <a class="profile-link" href="https://www.linkedin.com/in/paul-varner-2a4b10199" target="_blank">Linkedin</a>
+</section>
+<script src="portfolio.js"></script>
+</body>
+</html>
