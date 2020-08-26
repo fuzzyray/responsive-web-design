@@ -30,7 +30,6 @@
 
 #name-img {
     height: 64px;
-    background-color: ;
 }
 
 #nav-list {
@@ -168,7 +167,6 @@ body {
     height: 0;
     overflow: hidden;
     grid-area: video;
-    z-index: -1;
 }
 
 #video {
